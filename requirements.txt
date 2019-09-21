@@ -1,0 +1,5 @@
+aiohttp
+cchardet
+aiodns
+psycopg2
+SQLAlchemy
