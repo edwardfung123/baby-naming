@@ -10,6 +10,7 @@ RUN mkdir db
 COPY main.py main.py
 COPY db/__init__.py db/__init__.py
 COPY process_chars_freq.py process_chars_freq.py
+COPY parse_syllable_html.py parse_syllable_html.py
 # CMD python main.py
 ENTRYPOINT [ "python" ]
 

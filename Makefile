@@ -29,3 +29,9 @@ load_freq:
 		data_files/caches/json/freq/4001-4500.json \
 		data_files/caches/json/freq/4501-5000.json
 
+load_sounds:
+	docker run --rm  \
+		--network playground \
+		-v ${PWD}/data_files:/usr/src/app/data_files \
+		${IMAGE} \
+		parse_syllable_html.py data_files/caches/html/syllables/
