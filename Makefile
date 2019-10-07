@@ -27,7 +27,12 @@ load_freq:
 		 data_files/caches/json/freq/3001-3500.json \
 		 data_files/caches/json/freq/3501-4000.json \
 		data_files/caches/json/freq/4001-4500.json \
-		data_files/caches/json/freq/4501-5000.json
+		data_files/caches/json/freq/4501-5000.json \
+		data_files/caches/json/freq/5001-5500.json \
+		data_files/caches/json/freq/5501-6000.json \
+		data_files/caches/json/freq/6001-6500.json \
+		data_files/caches/json/freq/6501-7000.json \
+		data_files/caches/json/freq/7001-7072.json
 
 load_sounds:
 	docker run --rm  \
@@ -35,3 +40,10 @@ load_sounds:
 		-v ${PWD}/data_files:/usr/src/app/data_files \
 		${IMAGE} \
 		parse_syllable_html.py data_files/caches/html/syllables/
+
+load_strokes:
+	docker run --rm  \
+		--network playground \
+		-v ${PWD}/data_files:/usr/src/app/data_files \
+		${IMAGE} \
+		set_chars_strokes.py

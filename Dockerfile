@@ -11,6 +11,7 @@ COPY main.py main.py
 COPY db/__init__.py db/__init__.py
 COPY process_chars_freq.py process_chars_freq.py
 COPY parse_syllable_html.py parse_syllable_html.py
+COPY set_chars_strokes.py set_chars_strokes.py
 # CMD python main.py
 ENTRYPOINT [ "python" ]
 

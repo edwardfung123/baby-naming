@@ -7,8 +7,6 @@ import os
 
 sound = re.compile(r'''<font color=red size=\+1>([a-z]*)</font><font color=green size=\+1>([a-z]+)</font><font color=blue size=\+1>([1-9])</font>''')
 
-from db import insert_char_sound_parts_and_tone, drop_all_sounds, conn
-
 def parse_file(filename):
     ret = []
     with open(filename, "r") as f:
@@ -34,7 +32,7 @@ def parse_file(filename):
                 })
 
     logging.debug(ret)
-    return insert_char_sound_parts_and_tone(ret)
+    return ret
 
 
 if __name__ == '__main__':
@@ -43,9 +41,13 @@ if __name__ == '__main__':
     if len(files) == 0:
         raise ValueError("No file found")
 
-    drop_all_sounds()
-
+    values = []
     for filename in files:
-        parse_file(os.path.join(basepath, filename))
+        values += parse_file(os.path.join(basepath, filename))
 
+    logging.debug(values)
+
+    from db import insert_char_sound_parts_and_tone, drop_all_sounds, conn
+    drop_all_sounds()
+    insert_char_sound_parts_and_tone(values)
     conn.close()
